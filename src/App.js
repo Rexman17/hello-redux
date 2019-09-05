@@ -1,12 +1,17 @@
 import React, { Component } from "react";
-import HelloWorld from "./HelloWorld";
+import HelloWorld from "./HelloWorld"
+// create the Redux store
+import { createStore } from "redux"; // import from the Redux library
+import reducer from './reducers'
+
+const initialState = { tech: "React" };
+const store = createStore(reducer, initialState); // store (vault) and reducer (cashier) are in sync
+// the reducer is the only mandatory arg to createStore
 
 class App extends Component {
-  state = {
-    tech: "React"
-  };
+
   render() {
-    return <HelloWorld tech={this.state.tech} />;
+    return <HelloWorld tech={store.getState().tech} />;
   }
 }
 
